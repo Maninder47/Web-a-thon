@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cyber Crime Report</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Cyber Crime Reporting Portal</h1>
+        <p>If you have encountered a cybercrime, report it here to get assistance.</p>
+    </header>
+    
+    <section class="report-form">
+        <h2>Report a Cyber Crime</h2>
+        <form id="cyberCrimeForm" onsubmit="submitForm(event)">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="Mobile.no">Mobile.no:</label>
+            <input type="Mobile.no" id="Mobile.no" name="Mobile.no" required>
+            <label for="state">state:</label>
+            <select id="state" name="state" required>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="Andaman & Nicobar (UT)">Andaman & Nicobar (UT)</option>
+                <option value="Chandigarh (UT)">Chandigarh (UT)</option>
+                <option value="Dadra & Nagar Haveli and Daman & Diu (UT)">Dadra & Nagar Haveli and Daman & Diu (UT)</option>
+                <option value="Delhi [National Capital Territory (NCT)]">Delhi [National Capital Territory (NCT)]</option>
+                <option value="Jammu & Kashmir (UT)">Jammu & Kashmir (UT)</option>
+                <option value="Ladakh (UT)">Ladakh (UT)</option>
+                <option value="Lakshadweep (UT)">Lakshadweep (UT)</option>
+                <option value="Puducherry (UT)">Puducherry (UT)</option>
+            </select>
+
+
+            <label for="crimeType">Type of Crime:</label>
+            <select id="crimeType" name="crimeType" required>
+                <option value="hacking">Hacking</option>
+                <option value="phishing">Phishing</option>
+                <option value="fraud">Fraud</option>
+                <option value="identityTheft">Identity Theft</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="description">Description of the Incident:</label>
+            <textarea id="description" name="description" rows="5" required></textarea>
+
+            <button type="submit">Submit Report</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Cyber Crime Reporting System</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

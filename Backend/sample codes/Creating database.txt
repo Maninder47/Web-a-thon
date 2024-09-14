@@ -1,0 +1,45 @@
+To store preprocessed scraped data in a database, you can use various database systems such as SQLite, PostgreSQL, MySQL, or others. For simplicity, I'll demonstrate how to use SQLite, which is a lightweight and easy-to-set-up database system.
+
+Steps to Store Preprocessed Data in a Database:
+
+1. Set Up the Database: Create a database and define a table structure.
+2. Connect to the Database: Use a library to connect and interact with the database.
+3. Insert Data: Store the preprocessed data into the database.
+4. Query the Database: Retrieve and verify the stored data.
+
+Sample Code Using SQLite:
+
+import sqlite3
+
+conn = sqlite3.connect('preprocessed_data.db')
+cursor = conn.cursor()
+
+# Create a table
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS processed_data (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    original_text TEXT,
+    cleaned_text TEXT,
+    tokens TEXT,
+    tokens_no_stopwords TEXT,
+    lemmatized_tokens TEXT
+)
+''')
+
+# Insert data into the table
+for index, row in df.iterrows():
+    cursor.execute('''
+    INSERT INTO processed_data (original_text, cleaned_text, tokens, tokens_no_stopwords, lemmatized_tokens)
+    VALUES (?, ?, ?, ?, ?)
+    ''', (row['text'], row['cleaned_text'], str(row['tokens']), str(row['tokens_no_stopwords']), str(row['lemmatized_tokens'])))
+
+# Commit the changes and close the connection
+conn.commit()
+conn.close()
+
+# Example of querying the database
+conn = sqlite3.connect('preprocessed_data.db')
+df_from_db = pd.read_sql_query('SELECT * FROM processed_data', conn)
+print(df_from_db)
+conn.close()
+

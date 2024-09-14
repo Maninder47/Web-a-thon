@@ -1,0 +1,85 @@
+Steps for Preprocessing Text Data
+
+1. Import Libraries: Load the necessary libraries for data handling and NLP.
+2. Load Data: Read the scraped data into a DataFrame.
+3. Text Cleaning: Remove unwanted characters, whitespace, and normalize the text.
+4. Tokenization: Split text into tokens (words or sentences).
+5. Remove Stop Words: Eliminate common words that may not contribute to the meaning.
+6. Lemmatization/Stemming: Reduce words to their base or root form.
+7. Vectorization: Convert text to numerical format if required for modeling.
+8. Sample Code
+9. Here's a sample Python code illustrating these preprocessing steps:
+
+python
+Copy code
+import pandas as pd
+import re
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+import spacy
+
+# Download NLTK data (only needed once)
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+
+# Load Spacy model
+nlp = spacy.load('en_core_web_sm')
+
+# Sample DataFrame
+data = {'text': ["This is a sample sentence.", "Another example of text data!"]}
+df = pd.DataFrame(data)
+
+# Text Cleaning
+
+def clean_text(text):
+    # Remove special characters and numbers
+    text = re.sub(r'[^a-zA-Z\s]', '', text)
+    # Convert to lowercase
+    text = text.lower()
+    # Remove extra whitespace
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text
+
+df['cleaned_text'] = df['text'].apply(clean_text)
+
+# Tokenization
+
+def tokenize_text(text):
+    return word_tokenize(text)
+
+df['tokens'] = df['cleaned_text'].apply(tokenize_text)
+
+# Remove Stop Words
+
+def remove_stop_words(tokens):
+    stop_words = set(stopwords.words('english'))
+    return [word for word in tokens if word not in stop_words]
+
+df['tokens_no_stopwords'] = df['tokens'].apply(remove_stop_words)
+
+# Lemmatization
+lemmatizer = WordNetLemmatizer()
+
+def lemmatize_tokens(tokens):
+    return [lemmatizer.lemmatize(token) for token in tokens]
+
+df['lemmatized_tokens'] = df['tokens_no_stopwords'].apply(lemmatize_tokens)
+
+# Display the preprocessed DataFrame
+print(df)
+
+# Example of converting text to a numerical format (Vectorization)
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(df['cleaned_text'])
+print(X.toarray())
+Explanation of the Code:
+Text Cleaning: The clean_text function removes special characters, converts text to lowercase, and strips extra whitespace.
+Tokenization: The tokenize_text function splits text into tokens.
+Remove Stop Words: The remove_stop_words function filters out common stop words.
+Lemmatization: The lemmatize_tokens function reduces words to their base form.
+Vectorization: An example of converting cleaned text to a numerical format using TF-IDF.
